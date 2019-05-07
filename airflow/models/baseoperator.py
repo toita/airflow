@@ -24,10 +24,11 @@ import functools
 import logging
 import sys
 import warnings
+from datetime import timedelta, datetime
+from typing import Callable, Dict, Iterable, List, Optional, Set
 
 from abc import ABCMeta, abstractmethod
 from datetime import datetime, timedelta
-from typing import Any, Callable, ClassVar, Dict, FrozenSet, Iterable, List, Optional, Set, Type, Union
 
 
 import attr
@@ -428,8 +429,8 @@ class BaseOperator(LoggingMixin):
         self._log = logging.getLogger("airflow.task.operators")
 
         # lineage
-        self.inlets = []  # type: Iterable[DataSet]
-        self.outlets = []  # type: Iterable[DataSet]
+        self.inlets = []   # type: List[DataSet]
+        self.outlets = []  # type: List[DataSet]
         self.lineage_data = None
 
         self._inlets = {
